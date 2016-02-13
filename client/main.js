@@ -1,3 +1,4 @@
+// consoleCat
 console.log('running on the client');
 console.log('');
 console.log("             *     ,MMM8&&&.            *");
@@ -24,8 +25,28 @@ console.log("  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |");
 console.log(" ");
 console.log("         consoleCat - by Bob   (MEOW)");
 
-Session.set("imageLimit", 8);
+// routing
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
 
+Router.route('/', function(){
+  this.render('welcome', {
+    to:"main"
+  });
+});
+
+Router.route('/images', function(){
+  this.render('navigation', {
+    to:"navbar"
+  });
+  this.render('images', {
+    to:"main"
+  });
+});
+
+// infiniscroll
+Session.set("imageLimit", 8);
 lastScrollTop = 0;
 $(window).scroll(function(event){
   if ($(window).scrollTop() + $(window).height() > $(document).height()-100){
@@ -37,6 +58,12 @@ $(window).scroll(function(event){
   }
 });
 
+// accounts config
+Accounts.ui.config({
+  passwordSignupFields: "USERNAME_AND_EMAIL"
+});
+
+// Template helpers
 Template.large_image.helpers({
 		img_src: function () {
       return Session.get('large_image_src');
@@ -49,7 +76,7 @@ Template.large_image.helpers({
 Template.images.helpers({
   images: function(){
     if (Session.get("userFilter")){
-      return Images.find({createdBy:Session.get("userFilter")},{sort:{createdOn:-1,rating:-1},limit:Session.get("imageLimit")});
+      return Images.find({createdBy:Session.get("userFilter")},{sort:{rating:-1},limit:Session.get("imageLimit")});
     } else {
       return Images.find({},{sort:{createdOn:-1,rating:-1},limit:Session.get("imageLimit")});
     }
@@ -154,8 +181,4 @@ Template.image_add_form.events({
     $("#image-form-modal").modal('hide');
     return false;
   },
-});
-
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_AND_EMAIL"
 });

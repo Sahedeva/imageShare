@@ -3,20 +3,23 @@
 </head>
 
 <body>
-	{{> image_add_form}}
 	{{> large_image}}
-	<nav class="navbar navabar-default navbar-fixed-top">
-		<div class="container">
-			 {{> navigation}}
-		</div>
-	 
-	</nav>
-  <div class="container">
-
-  	{{> images}}
-
-	</div>
+	{{> image_add_form}}
 </body>
+
+<template name="ApplicationLayout">
+	{{> yield "navbar"}}
+	{{> yield "main"}}
+</template>
+
+<template name="welcome">
+	<h1 style="text-align: center;color:yellow;margin-top:-25px;">Welcome to Image Share!</h1>
+	<br>
+	<div id="welcomeDiv"></div>
+	<div id="enterDiv" >
+		<a href="/images" class="btn btn-info">Enter</a>
+	</div>
+</template>
 
 <template name="large_image">
 <div class="modal fade" id="large-image-modal">
@@ -53,20 +56,25 @@
 </template>
 
 <template name="navigation">
-	<div style="margin-bottom: 8px" class="row">
-		<div class="col-xs-9"><h1>Welcome to Image Share {{username}}!</h1></div>
-		<div style="margin-top: 23px" class="col-xs-3">
-			{{#if currentUser}}
-			<button class="btn btn-success js-show-image-form">Add Image</button>
-			{{/if}}
-			<div style="display:inline-block;"> {{> loginButtons}} </div>
-		</div>
-	</div>
+	<nav class="navbar navabar-default navbar-fixed-top">
+		<div class="container">
+			<div style="margin-bottom: 8px" class="row">
+				<div class="col-xs-9"><h1>Enjoy Sharing Images {{username}}!</h1></div>
+				<div style="margin-top: 23px" class="col-xs-3">
+					{{#if currentUser}}
+					<button class="btn btn-success js-show-image-form">Add Image</button>
+					{{/if}}
+					<div style="display:inline-block;"> {{> loginButtons}} </div>
+				</div>
+			</div>
+		</div> 
+	</nav>
 </template>
 
 <template name="images">
+<div class="container">
 	<div class="row">
-	<h2>
+	<h2 style="color:gold!important">
 	{{#if filtering_images}}
 		Showing images by {{getFilteredUser}} <a href="#" class="js-remove-image-filter">Show all images</a>
 	{{/if}}
@@ -83,8 +91,8 @@
 				<button class="js-del-image btn btn-warning">delete</button>
 			</div>
 		</div>
-	</div>
-  	
+	</div> 	
   {{/each}}
 	</div>
+</div>
 </template>
