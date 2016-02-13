@@ -1,0 +1,40 @@
+/* CSS declarations go here */
+.thumbnail {
+  min-height:500px;
+  max-height:500px;
+}
+
+.image-size {
+	max-height:300px;
+	border-radius: 10px;
+}
+
+.image-large {
+	height: 747px;
+	border-radius: 10px;
+}
+
+#login-dropdown-list {
+	left: -90px;
+}
+
+.image-caption {
+  word-wrap: break-word;
+}
+
+body {
+	padding-top: 90px;
+	background-color: beige;
+}
+
+.navbar {
+	background-color: lightsalmon;
+}
+
+#modal-content {
+  border-radius: 40px;
+  margin-top: 20px;
+  position: relative;
+  top: 30px;
+  background-color: lightgray;
+}

@@ -1,0 +1,90 @@
+<head>
+  <title>image_share</title>
+</head>
+
+<body>
+	{{> image_add_form}}
+	{{> large_image}}
+	<nav class="navbar navabar-default navbar-fixed-top">
+		<div class="container">
+			 {{> navigation}}
+		</div>
+	 
+	</nav>
+  <div class="container">
+
+  	{{> images}}
+
+	</div>
+</body>
+
+<template name="large_image">
+<div class="modal fade" id="large-image-modal">
+	<div class="modal-dialog">
+			<div style="top:-45px;right:130px;" class="modal-body">
+				<img class="image-large" src="{{img_src}}" alt="{{img_alt}}" data-dismiss="modal"/>
+			</div>
+		</div>
+</div>
+</template>
+
+<template name="image_add_form">
+<div class="modal fade" id="image-form-modal">
+	<div class="modal-dialog">
+		<div id="modal-content" class="modal-content">
+			<div class="modal-header">
+				<div class="modal-title"><h1 style="text-align:center;color:blue;">Add an Image</h1></div>
+			</div>
+			<div class="modal-body">
+				<form style="text-align:center" class="js-add-image">
+					<input style="width:300px;border-radius:10px;" type="text" name="img_src" placeholder="image source"/>
+					<br><br>
+					<input style="width:300px;border-radius:10px;" type="text" name="img_alt" placeholder="image alternative text"/>
+					<br><br>
+					<button style="display:block;margin:auto;" class="btn btn-success">save</button>
+				</form>	
+			</div>
+			<div class="modal-footer">
+				<button style="display:block;margin:auto;" class="btn btn-warning" data-dismiss="modal">cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<template name="navigation">
+	<div style="margin-bottom: 8px" class="row">
+		<div class="col-xs-9"><h1>Welcome to Image Share {{username}}!</h1></div>
+		<div style="margin-top: 23px" class="col-xs-3">
+			{{#if currentUser}}
+			<button class="btn btn-success js-show-image-form">Add Image</button>
+			{{/if}}
+			<div style="display:inline-block;"> {{> loginButtons}} </div>
+		</div>
+	</div>
+</template>
+
+<template name="images">
+	<div class="row">
+	<h2>
+	{{#if filtering_images}}
+		Showing images by {{getFilteredUser}} <a href="#" class="js-remove-image-filter">Show all images</a>
+	{{/if}}
+	</h2>
+	{{#each images}}
+	<div class="col-sx-12 col-md-3" id="{{_id}}">
+		<div class="thumbnail">
+			<img class="js-image image-size" src="{{img_src}}" alt="{{img_alt}}"/>
+			<div class="caption image-caption">
+				<h3>Rating {{rating}}</h3>
+				<p>{{img_alt}}</p>
+				<p>Shared by: <a href="#" class="js-set-image-filter">{{getUser createdBy}}</a></p>
+				<p>{{> starsRating mutable=true class="js-rate-image" id=_id}}</p>
+				<button class="js-del-image btn btn-warning">delete</button>
+			</div>
+		</div>
+	</div>
+  	
+  {{/each}}
+	</div>
+</template>
