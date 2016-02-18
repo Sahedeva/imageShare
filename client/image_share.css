@@ -2,7 +2,8 @@
 
 /* welcome template */
 #welcomeDiv {
-	background-image: url(http://vignette2.wikia.nocookie.net/matrix/images/d/df/Thematrixincode99.jpg/revision/latest?cb=20140425045724);
+  margin-top: -50px;
+	background-image: url(http://1jh9gi4250nndzjjwtqw1pmz.wpengine.netdna-cdn.com/wp-content/uploads/2015/06/Matrix-and-Internet.jpg);
   background-size: 100%;
   min-height:550px;
   background-repeat: no-repeat;
