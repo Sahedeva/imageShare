@@ -78,7 +78,7 @@ Template.images.helpers({
     if (Session.get("userFilter")){
       return Images.find({createdBy:Session.get("userFilter")},{sort:{rating:-1},limit:Session.get("imageLimit")});
     } else {
-      return Images.find({},{sort:{createdOn:-1,rating:-1},limit:Session.get("imageLimit")});
+      return Images.find({},{sort:{rating:-1},limit:Session.get("imageLimit")});
     }
   },
   filtering_images: function(){
