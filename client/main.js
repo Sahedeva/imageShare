@@ -36,7 +36,7 @@ Router.route('/', function(){
   });
 });
 
-Router.route('/images', function(){
+Router.route('images', function(){
   this.render('navigation', {
     to:"navbar"
   });
@@ -142,10 +142,11 @@ Template.images.events({
   },
   'click .js-del-image': function(event){
     var image_id = this._id;
+    console.log('deleting image with id of:');
     console.log(image_id);
     $('#'+image_id).hide('slow', function(){
       Images.remove({'_id':image_id});
-    });   
+    });
   },
   'click .js-rate-image': function(event){
     var rating = $(event.currentTarget).data("userrating");
@@ -170,8 +171,8 @@ Template.image_add_form.events({
     console.log('source: '+img_src+" alt: "+img_alt);
     if (Meteor.user()){
       Images.insert({
-        img_src:img_src, 
-        img_alt:img_alt, 
+        img_src:img_src,
+        img_alt:img_alt,
         createdOn:new Date(),
         createdBy:Meteor.user()._id
       });

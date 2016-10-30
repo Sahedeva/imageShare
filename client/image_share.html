@@ -41,7 +41,7 @@
 					<input style="width:300px;border-radius:10px;" type="text" name="img_alt" placeholder="image alternative text"/>
 					<br><br>
 					<button style="display:block;margin:auto;" class="btn btn-success">save</button>
-				</form>	
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button style="display:block;margin:auto;" class="btn btn-warning" data-dismiss="modal">cancel</button>
@@ -55,15 +55,15 @@
 	<nav class="navbar navabar-default navbar-fixed-top">
 		<div class="container">
 			<div style="margin-bottom: 8px" class="row">
-				<div class="col-xs-9"><h1>Enjoy Sharing Images {{username}}!</h1></div>
+				<div class="col-xs-6"><h1>Enjoy Sharing Images {{username}}!</h1></div>
 				<div style="margin-top: 23px" class="col-xs-3">
 					{{#if currentUser}}
 					<button class="btn btn-success js-show-image-form">Add Image</button>
 					{{/if}}
-					<div style="display:inline-block;"> {{> loginButtons}} </div>
+					<div class="pull-right" style="display:inline-block;margin-top:5px;"> {{> loginButtons}} </div>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</nav>
 </template>
 
@@ -87,7 +87,7 @@
 				<button class="js-del-image btn btn-warning">delete</button>
 			</div>
 		</div>
-	</div> 	
+	</div>
   {{/each}}
 	</div>
 </div>
